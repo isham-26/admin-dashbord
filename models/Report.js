@@ -19,4 +19,4 @@ const ReportSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Blog", ReportSchema);
+export default mongoose.model("Report", ReportSchema);
