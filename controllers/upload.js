@@ -81,6 +81,7 @@ export const getReport = async (req, res, next) => {
 
 export const getAllReports = async (req, res, next) => {
   try {
+    console.log("my friend you are on get all report controller");
     const reports = await Report.find({});
     res.status(200).json(reports);
   } catch (err) {

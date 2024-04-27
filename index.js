@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 
 import authRoute from "./routes/auth.js";
 import uploadRoute from "./routes/upload.js";
+import getallRoute from "./routes/getall.js";
 
 const app = express();
 dotenv.config();
@@ -32,6 +33,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/upload", uploadRoute);
+app.use("/api/getall", getallRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
