@@ -12,9 +12,18 @@ export const register = async (req, res, next) => {
       ...req.body,
       password: hash,
     });
+    // const newUser = new User({
+    //   username: "gautammm123",
+    //   name: "sidhart gautamm",
+    //   email: "gautammm123@gmail.com",
+    //   phone: "746199046",
+    //   password: "qwerty123",
+    // });
 
-    await newUser.save();
-    res.status(200).send("User has been created.");
+    const resp = await newUser.save();
+    console.log("finished");
+    const { others, username, email } = resp;
+    res.status(200).send({ username, email });
   } catch (err) {
     next(err);
   }
@@ -22,8 +31,10 @@ export const register = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
   try {
+    console.log("you reached here comfortably my friend");
     const user = await User.findOne({ email: req.body.email });
     if (!user) return next(createError(404, "User not found!"));
+    console.log("till here you are safe");
 
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
@@ -31,17 +42,19 @@ export const login = async (req, res, next) => {
     );
     if (!isPasswordCorrect)
       return next(createError(400, "Wrong password or username!"));
-
+    console.log("till this also");
     const token = jwt.sign({ id: user._id }, process.env.JWT);
 
-    const { password, ...otherDetails } = user._doc;
+    const { password, name, email, ...otherDetails } = user._doc;
+    console.log("nvnsbnsb baby");
     res
       .cookie("access_token", token, {
         httpOnly: true,
       })
       .status(200)
-      .json({ details: { ...otherDetails } });
+      .json({ details: { name, email } });
   } catch (err) {
+    console.log("you landed on wrong place brother");
     next(err);
   }
 };

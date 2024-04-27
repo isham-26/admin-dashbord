@@ -2,10 +2,13 @@ import Blog from "../models/Blog.js";
 import Report from "../models/Report.js";
 
 export const createReport = async (req, res, next) => {
+  console.log("landed on create report");
   const newReport = new Report(req.body);
 
   try {
+    console.log("trying to save eport ", newReport);
     const savedReport = await newReport.save();
+    console.log("done");
     res.status(200).json(savedReport);
   } catch (err) {
     next(err);
