@@ -6,10 +6,23 @@ const ReportSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    link: {
+    linkp: {
       type: String,
       required: true,
       unique: true,
+    },
+    linki: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    industry: {
+      type: String,
+      required: true,
+    },
+    subind: {
+      type: String,
+      required: true,
     },
     desc: {
       type: String,
