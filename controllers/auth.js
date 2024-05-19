@@ -44,12 +44,15 @@ export const login = async (req, res, next) => {
       return next(createError(400, "Wrong password or username!"));
     console.log("till this also");
     const token = jwt.sign({ id: user._id }, process.env.JWT);
+    console.log("token is ", token);
 
     const { password, name, email, ...otherDetails } = user._doc;
     console.log("nvnsbnsb baby");
     res
       .cookie("access_token", token, {
         httpOnly: true,
+        secure: false,
+        sameSite: "None",
       })
       .status(200)
       .json({ details: { name, email } });
