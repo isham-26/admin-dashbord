@@ -5,6 +5,6 @@ import { verifyUser } from "../utils/verifyTokens.js";
 const router = express.Router();
 
 router.post("/uploadreport", createReport);
-router.post("/uploadblog", verifyUser, createBlog);
+router.post("/uploadblog", createBlog);
 
 export default router;
