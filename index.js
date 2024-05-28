@@ -29,7 +29,10 @@ mongoose.connection.on("disconnected", () => {
 //middlewares
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "https://marq-pt5jl3q1n-sidhartgautam25s-projects.vercel.app",
+    ],
     credentials: true,
   })
 );

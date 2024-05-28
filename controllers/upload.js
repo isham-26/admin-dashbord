@@ -1,5 +1,6 @@
 import Blog from "../models/Blog.js";
 import Report from "../models/Report.js";
+import { conversion } from "../utils/convert.js";
 
 export const createReport = async (req, res, next) => {
   console.log("landed on create report");
@@ -76,6 +77,22 @@ export const getReport = async (req, res, next) => {
     res.status(200).json(report);
   } catch (err) {
     next(err);
+  }
+};
+
+export const getRep = async (req, res, next) => {
+  console.log("finally you are my frind");
+  let { industry } = req.query;
+  //industry = "shared_mobility";
+  console.log("req query ", industry);
+  industry = conversion(industry);
+  try {
+    const reports = await Report.find({ industry });
+    console.log("reports are ");
+    console.log(reports);
+    res.json(reports);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
