@@ -83,11 +83,14 @@ export const getReport = async (req, res, next) => {
 export const getRep = async (req, res, next) => {
   console.log("finally you are my frind");
   let { industry } = req.query;
+  let page = req.query.page || 1;
   //industry = "shared_mobility";
   console.log("req query ", industry);
   industry = conversion(industry);
   try {
-    const reports = await Report.find({ industry });
+    let limit = 10;
+    let skip = (page - 1) * limit;
+    const reports = await Report.find({ industry }).skip(skip).limit(limit);
     console.log("reports are ");
     console.log(reports);
     res.json(reports);
@@ -99,7 +102,10 @@ export const getRep = async (req, res, next) => {
 export const getAllReports = async (req, res, next) => {
   try {
     console.log("my friend you are on get all report controller");
-    const reports = await Report.find({});
+    let page = req.query.page || 1;
+    let limit = 10;
+    let skip = (page - 1) * limit;
+    const reports = await Report.find({}).skip(skip).limit(limit);
     res.status(200).json(reports);
   } catch (err) {
     next(err);
