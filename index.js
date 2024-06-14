@@ -29,7 +29,7 @@ mongoose.connection.on("disconnected", () => {
 //middlewares
 app.use(
   cors({
-    origin: "https://marq-admin-frontend-fper.vercel.app",
+    origin: ["http://localhost:3000", "https://marq-two.vercel.app"],
     credentials: true,
   })
 );
