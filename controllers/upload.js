@@ -128,7 +128,7 @@ export const getAllBlogs = async (req, res, next) => {
     const data = await Blog.find({});
     let len = data.length;
     let end = Math.min(len, skip + limit);
-    blogs = data.slice(skip, end);
+    let blogs = data.slice(skip, end);
     res.status(200).json({ blogs, len });
   } catch (err) {
     next(err);

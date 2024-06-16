@@ -5,14 +5,35 @@ const BlogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    link: {
+    type: {
       type: String,
-      required: true,
-      unique: true,
     },
-    desc: {
+    industry: {
       type: String,
-      required: true,
+    },
+    subind: {
+      type: String,
+    },
+    metaTitle: {
+      type: String,
+    },
+    MetaDesc: {
+      type: String,
+    },
+    MetaKey: {
+      type: String,
+    },
+    altThumb: {
+      type: String,
+    },
+    altPdf: {
+      type: String,
+    },
+    linkp: {
+      type: String,
+    },
+    linkt: {
+      type: String,
     },
   },
   { timestamps: true }
