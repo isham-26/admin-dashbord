@@ -16,6 +16,12 @@ const ReportSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    linkf: {
+      type: String,
+    },
+    linkt: {
+      type: String,
+    },
     industry: {
       type: String,
       required: true,
@@ -27,6 +33,21 @@ const ReportSchema = new mongoose.Schema(
     desc: {
       type: String,
       required: true,
+    },
+    dataSuite: {
+      type: String,
+    },
+    insightReport: {
+      type: String,
+    },
+    metaTitle: {
+      type: String,
+    },
+    metaDesc: {
+      type: String,
+    },
+    metaKey: {
+      type: String,
     },
   },
   { timestamps: true }
