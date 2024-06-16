@@ -88,12 +88,13 @@ export const getRep = async (req, res, next) => {
   console.log("req query ", industry);
   industry = conversion(industry);
   try {
-    let limit = 10;
+    let limit = 5;
     let skip = (page - 1) * limit;
-    const reports = await Report.find({ industry }).skip(skip).limit(limit);
-    console.log("reports are ");
-    console.log(reports);
-    res.json(reports);
+    let data = await Report.find({ industry });
+    let len = data.length;
+    let end = Math.min(data.length, skip + limit);
+    let reports = data.slice(skip, end);
+    res.json({ reports, len });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -103,10 +104,17 @@ export const getAllReports = async (req, res, next) => {
   try {
     console.log("my friend you are on get all report controller");
     let page = req.query.page || 1;
-    let limit = 10;
+    let limit = 5;
     let skip = (page - 1) * limit;
-    const reports = await Report.find({}).skip(skip).limit(limit);
-    res.status(200).json(reports);
+    let data = await Report.find({});
+    //console.log("here in detAllReports controller data is ", data);
+    console.log("line 1111");
+    let len = data.length;
+    console.log("line 22222");
+    // console.log("data is ", data);
+    let end = Math.min(data.length, skip + limit);
+    let reports = data.slice(skip, end);
+    res.status(200).json({ reports, len });
   } catch (err) {
     next(err);
   }
@@ -114,8 +122,14 @@ export const getAllReports = async (req, res, next) => {
 
 export const getAllBlogs = async (req, res, next) => {
   try {
-    const blogs = await Blog.find({});
-    res.status(200).json(blogs);
+    let page = req.query.page || 1;
+    let limit = 5;
+    let skip = (page - 1) * limit;
+    const data = await Blog.find({});
+    let len = data.length;
+    let end = Math.min(len, skip + limit);
+    blogs = data.slice(skip, end);
+    res.status(200).json({ blogs, len });
   } catch (err) {
     next(err);
   }
