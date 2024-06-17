@@ -82,15 +82,26 @@ export const getReport = async (req, res, next) => {
 
 export const getRep = async (req, res, next) => {
   console.log("finally you are my frind");
-  let { industry } = req.query;
+  let industry = req.query.industry;
   let page = req.query.page || 1;
+  let subind = req.query.subind || "none";
+  console.log("req.query is ", req.query);
   //industry = "shared_mobility";
   console.log("req query ", industry);
   industry = conversion(industry);
   try {
     let limit = 5;
     let skip = (page - 1) * limit;
-    let data = await Report.find({ industry });
+    let data;
+    if (subind == "none") {
+      console.log("none section");
+      data = await Report.find({ industry });
+    } else {
+      console.log("sub query section");
+      data = await Report.find({ industry: industry, subind: subind });
+      console.log("data size is ", data.length);
+    }
+
     let len = data.length;
     let end = Math.min(data.length, skip + limit);
     let reports = data.slice(skip, end);
