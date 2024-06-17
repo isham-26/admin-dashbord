@@ -150,3 +150,13 @@ export const getAllBlogs = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getBlog = async (req, res, next) => {
+  try {
+    let title = req.query.title;
+    const blog = await Blog.find({ title });
+    res.status(200).json(blog);
+  } catch (err) {
+    next(err);
+  }
+};
