@@ -81,25 +81,19 @@ export const getReport = async (req, res, next) => {
 };
 
 export const getRep = async (req, res, next) => {
-  console.log("finally you are my frind");
   let industry = req.query.industry;
   let page = req.query.page || 1;
   let subind = req.query.subind || "none";
-  console.log("req.query is ", req.query);
-  //industry = "shared_mobility";
-  console.log("req query ", industry);
+
   industry = conversion(industry);
   try {
     let limit = 5;
     let skip = (page - 1) * limit;
     let data;
     if (subind == "none") {
-      console.log("none section");
       data = await Report.find({ industry });
     } else {
-      console.log("sub query section");
       data = await Report.find({ industry: industry, subind: subind });
-      console.log("data size is ", data.length);
     }
 
     let len = data.length;
@@ -113,16 +107,13 @@ export const getRep = async (req, res, next) => {
 
 export const getAllReports = async (req, res, next) => {
   try {
-    console.log("my friend you are on get all report controller");
     let page = req.query.page || 1;
     let limit = 5;
     let skip = (page - 1) * limit;
     let data = await Report.find({});
-    //console.log("here in detAllReports controller data is ", data);
-    console.log("line 1111");
+
     let len = data.length;
-    console.log("line 22222");
-    // console.log("data is ", data);
+
     let end = Math.min(data.length, skip + limit);
     let reports = data.slice(skip, end);
     res.status(200).json({ reports, len });
@@ -132,23 +123,19 @@ export const getAllReports = async (req, res, next) => {
 };
 
 export const getAllBlogs = async (req, res, next) => {
-  console.log("request is coming to blog section ", req.query);
   try {
     let page = req.query.page || 1;
     let limit = 5;
     let skip = (page - 1) * limit;
     let data;
     if (req.query.industry && req.query.subind) {
-      console.log("everything");
       let industry = req.query.ind;
       data = await Blog.find({ industry, subind });
     } else if (req.query.industry) {
       let industry = req.query.ind;
-      console.log("industry ");
+
       data = await Blog.find({ industry });
-      console.log("data ", data);
     } else {
-      console.log("onluy page");
       data = await Blog.find({});
     }
     let len = data.length;
@@ -159,6 +146,16 @@ export const getAllBlogs = async (req, res, next) => {
       blogs = data.slice(skip, end);
     }
     res.status(200).json({ blogs, len });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getBlog = async (req, res, next) => {
+  try {
+    let title = req.query.title;
+    const blog = await Blog.find({ title });
+    res.status(200).json(blog);
   } catch (err) {
     next(err);
   }
