@@ -132,14 +132,32 @@ export const getAllReports = async (req, res, next) => {
 };
 
 export const getAllBlogs = async (req, res, next) => {
+  console.log("request is coming to blog section ", req.query);
   try {
     let page = req.query.page || 1;
     let limit = 5;
     let skip = (page - 1) * limit;
-    const data = await Blog.find({});
+    let data;
+    if (req.query.industry && req.query.subind) {
+      console.log("everything");
+      let industry = req.query.ind;
+      data = await Blog.find({ industry, subind });
+    } else if (req.query.industry) {
+      let industry = req.query.ind;
+      console.log("industry ");
+      data = await Blog.find({ industry });
+      console.log("data ", data);
+    } else {
+      console.log("onluy page");
+      data = await Blog.find({});
+    }
     let len = data.length;
     let end = Math.min(len, skip + limit);
-    let blogs = data.slice(skip, end);
+
+    let blogs = [];
+    if (len != 0) {
+      blogs = data.slice(skip, end);
+    }
     res.status(200).json({ blogs, len });
   } catch (err) {
     next(err);
