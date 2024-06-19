@@ -6,9 +6,9 @@ import {
   getAllReports,
   getBlog,
   getRep,
-  getpinBlog,
-  pinBlog,
-  unpinBlog,
+  getpinReport,
+  pinReport,
+  unpinReport,
 } from "../controllers/upload.js";
 import { verifyUser } from "../utils/verifyTokens.js";
 
@@ -19,8 +19,8 @@ router.get("/reports", getRep);
 router.get("/blogs", getAllBlogs);
 router.get("/blog", getBlog);
 router.delete("/report", deleteReport);
-router.put("/blog/pin", pinBlog);
-router.get("/blog/unpin", unpinBlog);
-router.get("/pin-report", getpinBlog);
+router.put("/report/pin", pinReport);
+router.put("/report/unpin", unpinReport);
+router.get("/pinned-report", getpinReport);
 
 export default router;

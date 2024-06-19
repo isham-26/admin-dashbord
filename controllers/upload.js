@@ -163,15 +163,18 @@ export const getBlog = async (req, res, next) => {
   }
 };
 
-export const pinBlog = async (req, res, next) => {
+export const pinReport = async (req, res, next) => {
   try {
+    console.log(
+      "your request for pinning this report is comming successfully to its controller"
+    );
     let filter = {
       title: req.query.title,
     };
     let update = {
       pin: true,
     };
-    const doc = await findOneAndUpdate(filter, update, {
+    const doc = await Report.findOneAndUpdate(filter, update, {
       new: true,
     });
     res.status(200).json({ doc });
@@ -180,7 +183,8 @@ export const pinBlog = async (req, res, next) => {
   }
 };
 
-export const unpinBlog = async (req, res, next) => {
+export const unpinReport = async (req, res, next) => {
+  console.log("request is comming successfully to unpin this report");
   try {
     let filter = {
       title: req.query.title,
@@ -188,7 +192,7 @@ export const unpinBlog = async (req, res, next) => {
     let update = {
       pin: false,
     };
-    const doc = await findOneAndUpdate(filter, update, {
+    const doc = await Report.findOneAndUpdate(filter, update, {
       new: false,
     });
     res.status(200).json({ doc });
@@ -197,7 +201,7 @@ export const unpinBlog = async (req, res, next) => {
   }
 };
 
-export const getpinBlog = async (req, res, next) => {
+export const getpinReport = async (req, res, next) => {
   try {
     const reports = await Report.find({ pin: true });
     res.status(200).json({ reports });
