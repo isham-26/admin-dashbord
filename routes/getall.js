@@ -1,9 +1,14 @@
 import express from "express";
 import {
+  deleteBlog,
+  deleteReport,
   getAllBlogs,
   getAllReports,
   getBlog,
   getRep,
+  getpinReport,
+  pinReport,
+  unpinReport,
 } from "../controllers/upload.js";
 import { verifyUser } from "../utils/verifyTokens.js";
 
@@ -13,6 +18,9 @@ router.get("/report", getAllReports);
 router.get("/reports", getRep);
 router.get("/blogs", getAllBlogs);
 router.get("/blog", getBlog);
-//router.post("/uploadblog", verifyUser, createBlog);
+router.delete("/report", deleteReport);
+router.put("/report/pin", pinReport);
+router.put("/report/unpin", unpinReport);
+router.get("/pinned-report", getpinReport);
 
 export default router;
