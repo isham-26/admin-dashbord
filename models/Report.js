@@ -49,6 +49,10 @@ const ReportSchema = new mongoose.Schema(
     metaKey: {
       type: String,
     },
+    pin: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
