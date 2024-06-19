@@ -54,9 +54,12 @@ export const updateBlog = async (req, res, next) => {
 
 export const deleteReport = async (req, res, next) => {
   try {
-    await Report.findByIdAndDelete(req.params.id);
+    console.log("we got the request to delete the report ", req.query);
+    await Report.findByIdAndDelete(req.query.id);
+    console.log("report deleted");
     res.status(200).json("Report has been deleted.");
   } catch (err) {
+    console.log("some error ", err);
     next(err);
   }
 };
@@ -157,5 +160,48 @@ export const getBlog = async (req, res, next) => {
     res.status(200).json(blog);
   } catch (err) {
     next(err);
+  }
+};
+
+export const pinBlog = async (req, res, next) => {
+  try {
+    let filter = {
+      title: req.query.title,
+    };
+    let update = {
+      pin: true,
+    };
+    const doc = await findOneAndUpdate(filter, update, {
+      new: true,
+    });
+    res.status(200).json({ doc });
+  } catch (err) {
+    res.status(500).json({ message: "some error occured" });
+  }
+};
+
+export const unpinBlog = async (req, res, next) => {
+  try {
+    let filter = {
+      title: req.query.title,
+    };
+    let update = {
+      pin: false,
+    };
+    const doc = await findOneAndUpdate(filter, update, {
+      new: false,
+    });
+    res.status(200).json({ doc });
+  } catch (err) {
+    res.status(500).json({ message: "some error occured" });
+  }
+};
+
+export const getpinBlog = async (req, res, next) => {
+  try {
+    const reports = await Report.find({ pin: true });
+    res.status(200).json({ reports });
+  } catch (err) {
+    res.status(500).json({ message: "some error occured" });
   }
 };
