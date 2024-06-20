@@ -86,8 +86,9 @@ export const getRep = async (req, res, next) => {
   let industry = req.query.industry;
   let page = req.query.page || 1;
   let subind = req.query.subind || "none";
-
-  industry = conversion(industry);
+  console.log("before conversion ", industry);
+  // industry = conversion(industry);
+  console.log("after conversion ", industry);
   try {
     let limit = 5;
     let skip = (page - 1) * limit;
@@ -109,6 +110,7 @@ export const getRep = async (req, res, next) => {
 
 export const getAllReports = async (req, res, next) => {
   try {
+    console.log("request is coming to get report at some page no ");
     let page = req.query.page || 1;
     let limit = 5;
     let skip = (page - 1) * limit;

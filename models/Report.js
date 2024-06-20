@@ -49,6 +49,15 @@ const ReportSchema = new mongoose.Schema(
     metaKey: {
       type: String,
     },
+    base: {
+      type: String,
+    },
+    forcast: {
+      type: String,
+    },
+    study: {
+      type: String,
+    },
     pin: {
       type: Boolean,
       default: false,
