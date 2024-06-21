@@ -3,11 +3,11 @@ const BlogSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
     },
     type: {
       type: String,
     },
+
     industry: {
       type: String,
     },
@@ -17,10 +17,10 @@ const BlogSchema = new mongoose.Schema(
     metaTitle: {
       type: String,
     },
-    MetaDesc: {
+    metaDesc: {
       type: String,
     },
-    MetaKey: {
+    metaKey: {
       type: String,
     },
     altThumb: {

@@ -17,6 +17,7 @@ export const createReport = async (req, res, next) => {
 
 export const createBlog = async (req, res, next) => {
   const newBlog = new Blog(req.body);
+  console.log("request is coming for uploading a new blog ", req.body);
 
   try {
     const savedBlog = await newBlog.save();
@@ -158,6 +159,7 @@ export const getAllBlogs = async (req, res, next) => {
 export const getBlog = async (req, res, next) => {
   try {
     let title = req.query.title;
+    console.log("requested title for the blogs is ", title);
     const blog = await Blog.find({ title });
     res.status(200).json(blog);
   } catch (err) {
@@ -209,5 +211,18 @@ export const getpinReport = async (req, res, next) => {
     res.status(200).json({ reports });
   } catch (err) {
     res.status(500).json({ message: "some error occured" });
+  }
+};
+
+export const getLatestInsight = async (req, res, next) => {
+  try {
+    // Find the latest report by sorting by createdAt field in descending order and limit the result to 1
+    const latestReport = await Blog.find({}).sort({ createdAt: -1 }).limit(3);
+    if (!latestReport) {
+      return res.status(404).json({ message: "No reports found" });
+    }
+    res.status(200).json({ blogs: latestReport });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching latest report", error });
   }
 };
