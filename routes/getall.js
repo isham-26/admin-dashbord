@@ -6,6 +6,7 @@ import {
   getAllReports,
   getBlog,
   getLatestInsight,
+  getRelatedBlogs,
   getRep,
   getpinReport,
   pinReport,
@@ -24,5 +25,6 @@ router.put("/report/pin", pinReport);
 router.put("/report/unpin", unpinReport);
 router.get("/pinned-report", getpinReport);
 router.get("/latest-blog", getLatestInsight);
+router.get("/related-blogs", getRelatedBlogs);
 
 export default router;
