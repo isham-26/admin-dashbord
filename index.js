@@ -31,6 +31,8 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
+      "http://localhost:3001",
+      "https://marq-admin-frontend-fper.vercel.app",
       "https://marq-two.vercel.app",
       "http://rahulsinghwebsite.online",
       "https://rahulsinghwebsite.online",
