@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
 import uploadRoute from "./routes/upload.js";
 import getallRoute from "./routes/getall.js";
+import bodyParser from "body-parser";
 
 const app = express();
 dotenv.config();
@@ -27,6 +28,7 @@ mongoose.connection.on("disconnected", () => {
 });
 
 //middlewares
+app.use(bodyParser.json({ limit: "20mb" }));
 app.use(
   cors({
     origin: [
