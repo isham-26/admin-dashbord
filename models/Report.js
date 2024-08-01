@@ -6,33 +6,61 @@ const ReportSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    linkp: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    linki: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    linkf: {
+    slug: {
       type: String,
     },
-    linkt: {
+    shortTitle: {
       type: String,
     },
+    subTitle: {
+      type: String,
+    },
+
+    geography: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
+    pSingle: {
+      type: String,
+    },
+    pTeam: {
+      type: String,
+    },
+    pCorp: {
+      type: String,
+    },
+    pDate: {
+      type: String,
+    },
+    rReports: {
+      type: String,
+    },
+    linki1: {
+      type: String,
+    },
+    linki2: {
+      type: String,
+    },
+    alti1: {
+      type: String,
+    },
+    alti2: {
+      type: String,
+    },
+
     industry: {
       type: String,
-      required: true,
+      // required: true,
     },
     subind: {
       type: String,
-      required: true,
+      // required: true,
     },
     desc: {
       type: String,
-      required: true,
+      // required: true,
     },
     dataSuite: {
       type: String,
@@ -61,6 +89,82 @@ const ReportSchema = new mongoose.Schema(
     pin: {
       type: Boolean,
       default: false,
+    },
+    msHeading: {
+      type: String,
+    },
+    msDesc: {
+      type: String,
+    },
+    msTable: {
+      type: Array,
+    },
+    moTitle: {
+      type: String,
+    },
+    moDesc: {
+      type: String,
+    },
+    sorTitle: {
+      type: String,
+    },
+    sorDesc: {
+      type: String,
+    },
+    kmtTitle: {
+      type: String,
+    },
+    kmtsh1: {
+      type: String,
+    },
+    kmtdesc1: {
+      type: String,
+    },
+    kmti1: {
+      type: String,
+    },
+    kmti1alt: {
+      type: String,
+    },
+    kmtsh2: {
+      type: String,
+    },
+    kmtdesc2: {
+      type: String,
+    },
+    kmti2: {
+      type: String,
+    },
+    kmti2alt: {
+      type: String,
+    },
+    clTitle: {
+      type: String,
+    },
+    clDesc: {
+      type: String,
+    },
+
+    mp: {
+      type: Array,
+    },
+    mpTitle: {
+      type: String,
+    },
+    rDevTitle: {
+      type: String,
+    },
+    rDevDesc: {
+      type: String,
+    },
+    faqTitle: {
+      type: String,
+    },
+    faqs: {
+      type: Array,
+    },
+    toc: {
+      type: String,
     },
   },
   { timestamps: true }
