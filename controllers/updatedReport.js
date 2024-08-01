@@ -1,7 +1,7 @@
 import Report from "../models/Report.js";
 
 export const cReport = async (req, res, next) => {
-  console.log("landed on create report ");
+  console.log("landed on create report ", req);
   let rep = {
     title: req.body.title,
     slug: req.body.slug,
@@ -24,14 +24,14 @@ export const cReport = async (req, res, next) => {
     msDesc: req.body.msContent,
     msTable: req.body.msTables,
     moTitle: req.body.moHeading,
-    moDesc: req.body.Content,
+    moDesc: req.body.moContent,
     sorTitle: req.body.srHeading,
     sorDesc: req.body.srContent,
     clTitle: req.body.clHeading,
     clDesc: req.body.Content,
     mp: req.body.mpCompanies,
     mpTitle: req.body.mpHeading,
-    toc: req.body.toc,
+    toc: req.body.tocContent,
     faqTitle: req.body.fsHeading,
     faqs: req.body.fsFaqs,
     rDevDesc: req.body.rdContent,
