@@ -43,7 +43,7 @@ export const cReport = async (req, res, next) => {
     kmtsh1: req.body.ktSubHeading,
     kmtdesc2: req.body.ktContent2,
     kmtsh2: req.body.ktSubHeading2,
-    kmti2: req.body.Image2,
+    kmti2: req.body.ktImage2,
     kmti2alt: req.body.ktImageAlt2,
     base: "",
     forcast: "",
