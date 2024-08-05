@@ -116,6 +116,11 @@ export const getAllReports = async (req, res, next) => {
     let limit = 5;
     let skip = (page - 1) * limit;
     let data = await Report.find({});
+    console.log("reached here ");
+    data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    console.log("now here ");
+    console.log("this is my type ", typeof data);
+    // console.log("printing data ", data);
 
     let len = data.length;
 
