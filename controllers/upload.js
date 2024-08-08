@@ -234,12 +234,22 @@ export const getLatestInsight = async (req, res, next) => {
 
 export const getRelatedBlogs = async (req, res, next) => {
   try {
-    console.log("request is coming to get related reports");
+    console.log("request is coming to get related blogs");
     const industry = req.query.industry;
     let related = await Blog.find({ industry });
     related = related.slice(0, 4);
     res.status(200).json({ related });
   } catch (err) {
     res.status(500).json({ message: "some error occured" });
+  }
+};
+
+export const relatedReports = async (req, res, next) => {
+  try {
+    console.log("request is coming for  related reports");
+  } catch (err) {
+    res.status(500).json({
+      message: "some error occured",
+    });
   }
 };

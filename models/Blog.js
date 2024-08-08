@@ -3,6 +3,7 @@ const BlogSchema = new mongoose.Schema(
   {
     title: {
       type: String,
+      unique: true,
     },
     type: {
       type: String,

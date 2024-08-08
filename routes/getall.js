@@ -13,6 +13,7 @@ import {
   unpinReport,
 } from "../controllers/upload.js";
 import { verifyUser } from "../utils/verifyTokens.js";
+import { relatedReports } from "../controllers/forReport.js";
 
 const router = express.Router();
 
@@ -27,5 +28,6 @@ router.put("/report/unpin", unpinReport);
 router.get("/pinned-report", getpinReport);
 router.get("/latest-blog", getLatestInsight);
 router.get("/related-blogs", getRelatedBlogs);
+router.get("/reports/related", relatedReports);
 
 export default router;
