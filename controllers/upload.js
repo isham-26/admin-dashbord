@@ -67,7 +67,7 @@ export const deleteReport = async (req, res, next) => {
 
 export const deleteBlog = async (req, res, next) => {
   try {
-    await Blog.findByIdAndDelete(req.params.id);
+    await Blog.findByIdAndDelete(req.query.id);
     res.status(200).json("Blog has been deleted.");
   } catch (err) {
     next(err);
