@@ -52,6 +52,7 @@ export const cReport = async (req, res, next) => {
     linki2: req.body.linki2,
     alti1: req.body.alti1,
     alti2: req.body.alti2,
+    related: req.body.related ?? "",
   };
   console.log("started");
   const newReport = new Report(rep);

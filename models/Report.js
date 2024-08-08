@@ -6,8 +6,13 @@ const ReportSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    id: {
+      type: String,
+      unique: true,
+    },
     slug: {
       type: String,
+      unique: true,
     },
     shortTitle: {
       type: String,
@@ -165,6 +170,9 @@ const ReportSchema = new mongoose.Schema(
     },
     toc: {
       type: String,
+    },
+    related: {
+      type: Array,
     },
   },
   { timestamps: true }
