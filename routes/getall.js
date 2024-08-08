@@ -21,6 +21,7 @@ router.get("/reports", getRep);
 router.get("/blogs", getAllBlogs);
 router.get("/blog", getBlog);
 router.delete("/report", deleteReport);
+router.delete("/delete/blog", deleteBlog);
 router.put("/report/pin", pinReport);
 router.put("/report/unpin", unpinReport);
 router.get("/pinned-report", getpinReport);
