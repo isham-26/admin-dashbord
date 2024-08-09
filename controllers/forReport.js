@@ -5,10 +5,10 @@ import Report from "../models/Report.js";
 export const relatedReports = async (req, res, next) => {
   try {
     console.log("request is coming for  related reports");
-    let col = req.body.related;
-    console.log("requested title for the blogs is ", title);
+    // let col = req.body.related;
+    // console.log("requested title for the blogs is ", title);
     const related = await Report.find({
-      $or: [{ id: col[0] }, { id: col[1] }, { id: col[2] }],
+      $or: [{ id: req.query.f }, { id: req.query.s }, { id: req.query.t }],
     });
     console.log("related reports are ", related);
     res.status(200).json(related);
