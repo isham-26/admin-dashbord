@@ -1,7 +1,7 @@
 import Report from "../models/Report.js";
 
 export const cReport = async (req, res, next) => {
-  console.log("landed on create report ", req);
+  console.log("landed on create report ", req.body.related);
   let rep = {
     title: req.body.title,
     slug: req.body.slug,
@@ -52,7 +52,7 @@ export const cReport = async (req, res, next) => {
     linki2: req.body.linki2,
     alti1: req.body.alti1,
     alti2: req.body.alti2,
-    related: req.body.related ?? "",
+    related: req.body.related ?? [],
   };
   console.log("started");
   const newReport = new Report(rep);

@@ -4,7 +4,7 @@ const ReportSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      unique: true,
+      // unique: true,
     },
     id: {
       type: String,
@@ -12,7 +12,7 @@ const ReportSchema = new mongoose.Schema(
     },
     slug: {
       type: String,
-      unique: true,
+      // unique: true,
     },
     shortTitle: {
       type: String,
