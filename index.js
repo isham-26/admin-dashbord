@@ -38,6 +38,8 @@ app.use(
       "https://marq-two.vercel.app",
       "http://rahulsinghwebsite.online",
       "https://rahulsinghwebsite.online",
+      "https://marqstat.online",
+      "http://marqstat.online",
     ],
     credentials: true,
   })
