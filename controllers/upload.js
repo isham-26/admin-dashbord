@@ -148,6 +148,7 @@ export const getAllBlogs = async (req, res, next) => {
     } else {
       data = await Blog.find({});
     }
+    data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     let len = data.length;
     let end = Math.min(len, skip + limit);
 
