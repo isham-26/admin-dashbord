@@ -135,7 +135,7 @@ export const getAllReports = async (req, res, next) => {
 export const getAllBlogs = async (req, res, next) => {
   try {
     let page = req.query.page || 1;
-    let limit = 5;
+    let limit = 6;
     let skip = (page - 1) * limit;
     let data;
     if (req.query.industry && req.query.subind) {
@@ -148,6 +148,7 @@ export const getAllBlogs = async (req, res, next) => {
     } else {
       data = await Blog.find({});
     }
+    data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     let len = data.length;
     let end = Math.min(len, skip + limit);
 
@@ -232,11 +233,25 @@ export const getLatestInsight = async (req, res, next) => {
   }
 };
 
+export const getLatestBlog = async (req, res, next) => {
+  try {
+    const latest = await Blog.find({});
+    latest.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const data = latest.slice(0, 1);
+    res.status(200).json({ data });
+    
+  } catch (err) {
+    res.status(500).json({
+      message:"Error occured while fetching latest blog"
+    })
+  }
+}
+
 export const getRelatedBlogs = async (req, res, next) => {
   try {
     console.log("request is coming to get related blogs");
     const industry = req.query.industry;
-    let related = await Blog.find({ industry });
+    let related = await Blog.find({ });
     related = related.slice(0, 4);
     res.status(200).json({ related });
   } catch (err) {
