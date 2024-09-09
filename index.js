@@ -40,6 +40,8 @@ app.use(
       "https://rahulsinghwebsite.online",
       "https://marqstat.online",
       "http://marqstat.online",
+      "https://marqstats.com",
+      "http://marqstats.com",
     ],
     credentials: true,
   })
