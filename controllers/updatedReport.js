@@ -4,6 +4,7 @@ export const cReport = async (req, res, next) => {
   console.log("landed on create report ", req.body.related);
   let rep = {
     title: req.body.title,
+    id: req.body.id,
     slug: req.body.slug,
     shortTitle: req.body.shortTitle,
     desc: req.body.shortTitle,
