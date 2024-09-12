@@ -40,6 +40,8 @@ app.use(
       "https://rahulsinghwebsite.online",
       "https://marqstat.online",
       "http://marqstat.online",
+      "https://marqstats.com",
+      "http://marqstats.com",
     ],
     credentials: true,
   })
@@ -50,6 +52,9 @@ app.use(express.json());
 app.use((req, res, next) => {
   console.log("request is coming and the request is  Cookies:", req.cookies);
   next();
+});
+app.get('/', (req, res) => {
+  res.send('Welcome to the Backend Home Route!');
 });
 
 app.use("/api/auth", authRoute);
