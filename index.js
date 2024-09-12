@@ -53,6 +53,9 @@ app.use((req, res, next) => {
   console.log("request is coming and the request is  Cookies:", req.cookies);
   next();
 });
+app.get('/', (req, res) => {
+  res.send('Welcome to the Backend Home Route!');
+});
 
 app.use("/api/auth", authRoute);
 app.use("/api/upload", uploadRoute);
